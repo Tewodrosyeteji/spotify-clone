@@ -1,9 +1,22 @@
 import { TbPlaylist } from "react-icons/tb";
 import { AiOutlinePlus } from "react-icons/ai";
+import useAuthModal from "@/hooks/useAuthModal";
+import { useUser } from "@/hooks/useUser";
+import useUploadModal from "@/hooks/useUplaodModal";
 
 type Props = {};
 
 const Library = (props: Props) => {
+  const authModal = useAuthModal();
+  const { user } = useUser();
+  const uploadModal = useUploadModal();
+
+  const onClick = () => {
+    if (!user) {
+      return authModal.onOpen();
+    }
+    uploadModal.onOpen();
+  };
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center px-5 py-4">
@@ -12,6 +25,7 @@ const Library = (props: Props) => {
           <p className="text-neutral-400 font-medium text-md">Library</p>
         </div>
         <AiOutlinePlus
+          onClick={onClick}
           size={20}
           className="text-neutral-400 hover:text-white cursor-pointer transition"
         />
