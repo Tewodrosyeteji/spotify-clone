@@ -1,5 +1,7 @@
 import getSongsByTitle from "@/actions/getSongsByTitle";
 import Header from "@/components/Header";
+import SearchInput from "@/components/SearchInput";
+import SearchContent from "./components/SearchContent";
 
 type SearchProps = {
   searchParams: {
@@ -14,8 +16,10 @@ const Search = async ({ searchParams }: SearchProps) => {
       <Header className="from-bg-neutral-900">
         <div className="mb-2 flex flex-col gap-y-6 ">
           <h1 className="text-white text-2xl font-semibold ">Search</h1>
+          <SearchInput />
         </div>
       </Header>
+      <SearchContent songs={songs} />
     </div>
   );
 };
