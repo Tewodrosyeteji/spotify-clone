@@ -9,13 +9,14 @@ import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useUser } from "@/hooks/useUser";
 import { FaUserAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
+import { twMerge } from "tailwind-merge";
 
 type HeaderProps = {
   children: React.ReactNode;
   className?: string;
 };
 
-const Header: React.FC<HeaderProps> = ({ children }) => {
+const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const router = useRouter();
   const authModal = useAuthModal();
   const supabaseClient = useSupabaseClient();
@@ -32,7 +33,12 @@ const Header: React.FC<HeaderProps> = ({ children }) => {
     }
   };
   return (
-    <div className="h-fit bg-gradient-to-b from-emerald-800 p-6">
+    <div
+      className={twMerge(
+        "h-fit bg-gradient-to-b from-emerald-800 p-6",
+        className
+      )}
+    >
       <div className="flex items-centr justify-between w-full mb-4">
         <div className="hidden md:flex gap-x-2 items-center">
           <button
