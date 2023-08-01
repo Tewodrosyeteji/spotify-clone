@@ -12,7 +12,10 @@ type SongItemProps = {
 const SongItem: React.FC<SongItemProps> = ({ data, onClick }) => {
   const imagePath = useLoadImage(data);
   return (
-    <div className="relative group flex flex-col rounded-md gap-x-d items-center overflow-hidden justify-center bg-neutral-400/5 hover:bg-neutral-400/10 transition p-3 cursor-pointer">
+    <div
+      onClick={() => onClick(data.id)}
+      className="relative group flex flex-col rounded-md gap-x-d items-center overflow-hidden justify-center bg-neutral-400/5 hover:bg-neutral-400/10 transition p-3 cursor-pointer"
+    >
       <div className="relative aspect-square w-full h-full rounded-md overflow-hidden ">
         <Image
           src={imagePath || "/images/liked.png"}
